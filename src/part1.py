@@ -14,7 +14,7 @@ if len(argv) == 2:
 
 
 # Read the Excel file and return a dictionary of {'sheet_name' -> Pandas data_frame from that sheet}
-# Note: The file is already sorted, but just sort it anyway to be sure
+# Note: The file is already sorted(desc.), but just sort it anyway to be sure, also sort by dates(asc.) for Part2
 # Note2: This function also compute the values of '% Daily Return' and add to the new column
 # Note3: Also return max_val and min_val for displaying
 def excel_to_dataframes(file_path=file_path):
