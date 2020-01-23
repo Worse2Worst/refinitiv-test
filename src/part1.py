@@ -3,11 +3,12 @@ import xlrd
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
 from matplotlib.ticker import (AutoMinorLocator, MultipleLocator)
-from matplotlib.widgets import Slider
+import os
 from sys import argv
 
 
-file_path = 'files/PreciousMetalSpot.xlsx'
+script_dir = os.path.dirname(__file__)
+file_path = os.path.join(script_dir, '../files/PreciousMetalSpot.xlsx')
 if len(argv) == 2:
     file_path = argv[1]
 
