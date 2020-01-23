@@ -1,17 +1,8 @@
 from part1 import excel_to_dataframes
 import pandas as pd
-from datetime import datetime, timedelta
-import argparse
+from datetime import timedelta
 
 dataframes, xlim = excel_to_dataframes()
-months = [3, 6, 9, 12]
-sheet = 'Gold Spot'
-parser = argparse.ArgumentParser(description='Part2 of the Refinitiv test.')
-parser.add_argument('sheet', const=sheet, action='store_const',
-                    default='Gold Spot', help='A name of sheet that we care')
-parser.add_argument('months', const=months, action='store_const',
-                    default=[3, 6, 9, 12], help='A list of months that we care')
-args = parser.parse_args()
 
 
 def find_max_profit_days(weekdays):
@@ -35,7 +26,7 @@ def find_max_profit_days(weekdays):
     return (buy_date, buy_price), (sell_date, sell_price), max_profit
 
 
-def calculate(sheet=sheet, months=months):
+def calculate(sheet='Gold Spot', months=[3, 6, 9, 12]):
     df = dataframes[sheet]
     groups = df.groupby(pd.Grouper(key='Date', freq='W'))
     data = {}
