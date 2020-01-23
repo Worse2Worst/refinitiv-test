@@ -1,6 +1,6 @@
 from part1 import excel_to_dataframes
 import pandas as pd
-from datetime import timedelta
+from datetime import datetime, timedelta
 import argparse
 
 dataframes, xlim = excel_to_dataframes()
@@ -20,15 +20,19 @@ def find_max_profit_days(weekdays):
     max_profit = 0
     buy_date = None
     sell_date = None
+    buy_price = None
+    sell_price = None
     for index, item in weekdays.iterrows():
         price = item['Bid Close']
         if price < min_price:
-            buy_date = item['Date']
+            buy_price = price
             min_price = price
+            buy_date = item['Date']
         elif price - min_price > max_profit:
-            max_profit = price - min_price
+            sell_price = price
+            max_profit = sell_price - min_price
             sell_date = item['Date']
-    return (buy_date, sell_date), max_profit
+    return (buy_date, buy_price), (sell_date, sell_price), max_profit
 
 
 def calculate(sheet=sheet, months=months):
@@ -44,7 +48,18 @@ def calculate(sheet=sheet, months=months):
 
 
 def display_data(data):
-    return
+    for monday, (buy, sell, profit) in data.items():
+        friday = monday + timedelta(4)
+        print('Maximum profit week {} to {} is {:.2f}, buy at {:.2f} on {}, sell at {:.2f} on {}'.
+              format(monday.strftime('%m/%d/%Y'),
+                     friday.strftime('%m/%d/%Y'),
+                     profit,
+                     buy[1],
+                     buy[0].strftime('%m/%d/%Y'),
+                     sell[1],
+                     sell[0].strftime('%m/%d/%Y')
+                     )
+              )
 
 
 def main():
