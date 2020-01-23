@@ -29,9 +29,9 @@ def excel_to_dataframes(file_path=file_path):
                                                parse_dates=date_column).sort_values(by='Date', ascending=True)
         dataframes[sheet_name]['% Daily Return'] = dataframes[sheet_name]['Bid Close'].pct_change(1) * 100
         if min(dataframes[sheet_name]['% Daily Return'].dropna()) < min_val:
-            min_val = min(dataframes[sheet_name]['% Daily Return'])
+            min_val = min(dataframes[sheet_name]['% Daily Return'].dropna())
         if max(dataframes[sheet_name]['% Daily Return'].dropna()) > max_val:
-            max_val = max(dataframes[sheet_name]['% Daily Return'])
+            max_val = max(dataframes[sheet_name]['% Daily Return'].dropna())
     return dataframes, (min_val - 0.1, max_val + 0.1)
 
 
