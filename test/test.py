@@ -1,8 +1,6 @@
 import unittest
 import sys
 import numpy as np
-import pandas as pd
-from datetime import datetime, timedelta
 
 sys.path.insert(0, '../src/')  # change path so that it can find the modules
 
