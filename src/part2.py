@@ -40,6 +40,7 @@ def calculate(sheet='Gold Spot', months=None):
         monday = dt.date() - timedelta(6)
         friday = dt.date() - timedelta(2)
         if len(group) == 5 and monday.month in months and monday.month == friday.month:
+            assert (group['Date'].iloc[0] == monday and group['Date'].iloc[-1] == friday)
             data[monday] = find_max_profit_days(group)
     return data
 
