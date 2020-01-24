@@ -26,7 +26,9 @@ def find_max_profit_days(weekdays):
     return (buy_date, buy_price), (sell_date, sell_price), max_profit
 
 
-def calculate(sheet='Gold Spot', months=[3, 6, 9, 12]):
+def calculate(sheet='Gold Spot', months=None):
+    if not months:
+        months = [3, 6, 9, 12]
     df = dataframes[sheet]
     groups = df.groupby(pd.Grouper(key='Date', freq='W'))
     data = {}

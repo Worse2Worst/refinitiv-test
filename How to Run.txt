@@ -1,4 +1,4 @@
-change your console directory to /src then type the below commands
+change your console directory to "/src", then type the below commands
 
 Part1:
 python part1.py
@@ -6,3 +6,8 @@ python part1.py
 
 Part2:
 python part2.py
+
+Unit tests:
+change your console directory to "/test", then type the below command
+
+python -m test 
