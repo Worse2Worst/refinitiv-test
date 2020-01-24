@@ -10,16 +10,20 @@ def find_max_profit_days(weekdays):
     min_price = 9999999999
     max_profit = 0
     buy_date = None
+    temp_buy_date = None
     sell_date = None
     buy_price = None
+    temp_buy_price = None
     sell_price = None
     for index, item in weekdays.iterrows():
         price = item['Bid Close']
         if price < min_price:
-            buy_price = price
+            temp_buy_price = price
             min_price = price
-            buy_date = item['Date']
+            temp_buy_date = item['Date']
         elif price - min_price > max_profit:
+            buy_date = temp_buy_date
+            buy_price = temp_buy_price
             sell_price = price
             max_profit = sell_price - min_price
             sell_date = item['Date']

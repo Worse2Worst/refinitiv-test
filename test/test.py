@@ -32,7 +32,7 @@ class TestPart1(unittest.TestCase):
 class TestPart2(unittest.TestCase):
     # Test calculate maximum profits for Silver Spot, January only
     def test_calculate_silver_spot_january(self):
-        data = calculate(sheet='Silver Spot', months=[1])
+        data = calculate(months=[6])
         display_data(data)
 
 
